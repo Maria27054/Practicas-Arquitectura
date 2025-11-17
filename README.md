@@ -61,7 +61,7 @@ Si falla:
 
 Intentos 1 y 2: parpadea la bomba antigua 3 veces, luego todos los LEDs parpadean 1 vez indicando que la bomba se movió, y se genera nueva posición.
 
-Intento 3: directamente fade lento y reinicio.
+Intento 3: directamente nueva partida(fade).
 
 Reinicio manual disponible en cualquier momento con el botón 3.
 
