@@ -55,7 +55,7 @@ Se ilumina un solo LED indicando la selección actual.
 
 Al confirmar:
 
-Si coincide con la bomba → win animación + fade y reinicio.
+Si coincide con la bomba → win animación + reinicio(fade).
 
 Si falla:
 
