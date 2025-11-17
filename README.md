@@ -43,8 +43,6 @@ SEXTA ACTIVIDAD "Juego de la Bomba" -> El jugador debe seleccionar un LED y “d
 
 Funcionalidad
 
-LEDs: D7–D12
-
 Botón 1 (D2): Recorrer la selección de LED de manera cíclica
 
 Botón 2 (D3): Confirmar elección
