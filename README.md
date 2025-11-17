@@ -42,20 +42,35 @@ QUINTA ACTIVIDAD " IRQ + Memoria" -> Modifique el código de la computadora para
 SEXTA ACTIVIDAD "Juego de la Bomba" -> El jugador debe seleccionar un LED y “desactivar la bomba” antes de agotar sus 3 intentos. La posición de la bomba es aleatoria y cambia después de cada intento fallido (excepto el último). La actividad incluye animaciones visuales que indican fallos, aciertos y reinicios.
 
 Funcionalidad
+
 LEDs: D7–D12
+
 Botón 1 (D2): Recorrer la selección de LED de manera cíclica
+
 Botón 2 (D3): Confirmar elección
+
 Botón 3 (D4): Reinicio manual del juego
 
 Lógica del juego
+
 Se ilumina un solo LED indicando la selección actual.
+
 Al confirmar:
+
 Si coincide con la bomba → win animación + fade y reinicio.
+
 Si falla:
+
 Intentos 1 y 2: parpadea la bomba antigua 3 veces, luego todos los LEDs parpadean 1 vez indicando que la bomba se movió, y se genera nueva posición.
+
 Intento 3: directamente fade lento y reinicio.
+
 Reinicio manual disponible en cualquier momento con el botón 3.
+
 Animaciones
+
 Win: todos los LEDs parpadean 3 veces.
+
 Fallo: LED de la bomba parpadea 3 veces.
+
 Nueva partida: Fade, todos los LEDs aumentan y disminuyen brillo suavemente.
