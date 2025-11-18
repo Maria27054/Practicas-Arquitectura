@@ -24,13 +24,13 @@ void setup() {
 
 void loop() {
 
-  // -------- PAUSA ----------
+  // Pausa
   if (digitalRead(botonPause) == LOW) {
     pausado = true;
     esperarSoltar(botonPause);
   }
 
-  // -------- REANUDAR --------
+  // Reanudar
   if (digitalRead(botonResume) == LOW) {
     pausado = false;
     esperarSoltar(botonResume);
@@ -38,7 +38,7 @@ void loop() {
 
   if (pausado) return;  // detiene TODO
 
-  // ----------- CONTROL GENERAL DE SECUENCIA -----------
+  // Secuencia
   switch (estadoSecuencia) {
 
     case 0:  // SOS
@@ -49,7 +49,7 @@ void loop() {
       }
       break;
 
-    case 1:  // BLINK 7 VECES
+    case 1:  // BLINK 7 veces
       if (blink7()) { 
         esperarPausaSecuencia();
         estadoSecuencia = 2; 
@@ -57,7 +57,7 @@ void loop() {
       }
       break;
 
-    case 2:  // FADE
+    case 2:  // Fade
       if (fade()) { 
         esperarPausaSecuencia();
         estadoSecuencia = 0; 
@@ -67,11 +67,9 @@ void loop() {
   }
 }
 
-// ==========================================================
-//                      FUNCIONES
-// ==========================================================
+// Funciones
 
-// ------------------- SOS -------------------
+// SOS 
 bool SOS() {
   int dot = 300;
   int dash = 900;
@@ -90,7 +88,7 @@ bool SOS() {
   return false;
 }
 
-// ------------------- BLINK 7 VECES -------------------
+// BLINK 7 veces
 bool blink7() {
   if (pasoInterno >= 7) return true;
 
@@ -103,7 +101,7 @@ bool blink7() {
   return false;
 }
 
-// ------------------- FADE -------------------
+// Fade
 bool fade() {
 
   if (pasoInterno < 256) { // Subida
@@ -126,9 +124,7 @@ bool fade() {
   }
 }
 
-// ==========================================================
-//                   FUNCIONES DE APOYO
-// ==========================================================
+// Funciones de apoyo
 
 // Encender todos
 void encenderTodos() {
