@@ -54,7 +54,7 @@ void loop() {
   }
 }
 
-// --- Funciones ---
+// Funciones
 
 void runSOS(unsigned long now){
   unsigned long duration = sosPattern[subStep] == 1 ? shortFlash : longFlash;
