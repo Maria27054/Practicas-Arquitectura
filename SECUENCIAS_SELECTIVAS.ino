@@ -8,7 +8,7 @@ const int btnSOS   = 2;
 const int btnBlink = 3;
 const int btnFade  = 4;
 
-// --- Variables SOS ---
+// Variables SOS
 const int sosPattern[9] = {1,1,1,3,3,3,1,1,1}; // 1=punto, 3=raya
 const unsigned long dotTime = 400; // tiempo lento
 int sosStep = 0;
@@ -16,14 +16,14 @@ bool sosLEDOn = false;
 bool sosActive = false;
 unsigned long sosTimer = 0;
 
-// --- Variables Blink ---
+// Variables Blink 
 int blinkCount = 0;
 bool blinkState = false;
 bool blinkActive = false;
 unsigned long blinkTimer = 0;
 const unsigned long blinkInterval = 500;
 
-// --- Variables Fade ---
+// Variables Fade
 bool fadeUp = true;
 bool fadeActive = false;
 int fadeValue = 0;
@@ -48,7 +48,7 @@ void setup() {
 void loop() {
   unsigned long currentMillis = millis();
 
-  // --- Botón SOS ---
+  // Botón SOS 
   if (digitalRead(btnSOS) == LOW && !sosActive && !blinkActive && !fadeActive){
     sosActive = true;
     sosStep = 0;
@@ -56,7 +56,7 @@ void loop() {
     sosTimer = currentMillis;
   }
 
-  // --- Botón Blink ---
+  // Botón Blink 
   if (digitalRead(btnBlink) == LOW && !blinkActive && !sosActive && !fadeActive){
     blinkActive = true;
     blinkCount = 0;
@@ -64,7 +64,7 @@ void loop() {
     blinkTimer = currentMillis;
   }
 
-  // --- Botón Fade ---
+  // Botón Fade
   if (digitalRead(btnFade) == LOW && !fadeActive && !sosActive && !blinkActive){
     fadeActive = true;
     fadeUp = true;
@@ -72,7 +72,7 @@ void loop() {
     fadeTimer = currentMillis;
   }
 
-  // --- Ejecutar SOS ---
+  // Ejecutar SOS 
   if(sosActive){
     unsigned long duration = (sosPattern[sosStep]==1?dotTime:dotTime*3);
     if(currentMillis - sosTimer >= duration){
@@ -91,7 +91,7 @@ void loop() {
     }
   }
 
-  // --- Ejecutar Blink ---
+  // Ejecutar Blink 
   if(blinkActive){
     if(currentMillis - blinkTimer >= blinkInterval){
       blinkTimer = currentMillis;
@@ -109,7 +109,7 @@ void loop() {
     }
   }
 
-  // --- Ejecutar Fade ---
+  // Ejecutar Fade 
   if(fadeActive){
     if(currentMillis - fadeTimer >= fadeStepTime){
       fadeTimer = currentMillis;
