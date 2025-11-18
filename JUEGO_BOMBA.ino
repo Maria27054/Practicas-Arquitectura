@@ -1,22 +1,21 @@
-// ===============================================
 // CONFIGURACIÓN DEL JUEGO DE LA BOMBA
-// ===============================================
+
 
 // LEDs en orden
 int leds[] = {7, 8, 9, 10, 11, 12};
 int totalLeds = 6;
 
-// Botones
+//botones
 int botonSeleccion = 2;   // Recorre LEDs
 int botonConfirmar = 3;   // Confirma elección
 int botonReset = 4;       // Reinicio manual
 
-// Variables del juego
+//variables del juego
 int posicionActual = 0;   // LED seleccionado
 int posicionBomba = 0;    // LED donde está la bomba
 int intentos = 3;         // 3 oportunidades
 
-// Evitar rebotes
+//evitar rebotes
 void esperarSoltar(int pin) {
   while (digitalRead(pin) == LOW);
   delay(150);
@@ -38,29 +37,27 @@ void setup() {
 
 void loop() {
 
-  // ------------- REINICIO MANUAL -------------
+  //reinicio manual
   if (digitalRead(botonReset) == LOW) {
     esperarSoltar(botonReset);
     iniciarJuego();
     return;
   }
 
-  // ------------- SELECCIONAR LED -------------
+  //seleccionar LED
   if (digitalRead(botonSeleccion) == LOW) {
     esperarSoltar(botonSeleccion);
     moverSeleccion();
   }
 
-  // ------------- CONFIRMAR ELECCIÓN -------------
+  //confirmacion elección 
   if (digitalRead(botonConfirmar) == LOW) {
     esperarSoltar(botonConfirmar);
     procesarIntento();
   }
 }
 
-// ===============================================
-//               FUNCIONES PRINCIPALES
-// ===============================================
+// funciones principales 
 
 void iniciarJuego() {
   apagarTodos();
@@ -68,7 +65,7 @@ void iniciarJuego() {
   posicionActual = 0;
   posicionBomba = random(0, totalLeds);  // Bomba aleatoria
 
-  // Mostrar LED seleccionado
+  // mostrar LED seleccionado
   mostrarSeleccion();
 }
 
@@ -85,27 +82,27 @@ void moverSeleccion() {
 
 void procesarIntento() {
   if (posicionActual == posicionBomba) {
-    // GANÓ
+    // ganó
     winAnimacion();
     fadeTodos();
     iniciarJuego();
     return;
   }
 
-  // Falló
+  // falló
   intentos--;
 
-  // Parpadea 3 veces donde estaba la bomba
+  // parpadea 3 veces donde estaba la bomba
   mostrarBombaError();
 
   if (intentos > 0) {
-    // Parpadeo de todos los LEDs → indica que la bomba se mueve
+    // parpadeo de todos los LEDs → indica que la bomba se mueve
     encenderTodos();
     delay(250);
     apagarTodos();
     delay(250);
 
-    // Genera nueva posición de la bomba diferente a la selección actual
+    // genera nueva posición de la bomba diferente a la selección actual
     do {
       posicionBomba = random(0, totalLeds);
     } while (posicionBomba == posicionActual);
@@ -119,9 +116,7 @@ void procesarIntento() {
   }
 }
 
-// ===============================================
-//              FUNCIONES DE ANIMACIÓN
-// ===============================================
+//funciones de animación
 
 void mostrarSeleccion() {
   apagarTodos();
@@ -167,9 +162,7 @@ void fadeTodos() {
   apagarTodos();
 }
 
-// ===============================================
-//                 FUNCIONES ÚTILES
-// ===============================================
+//funciones utiles 
 
 void encenderTodos() {
   for (int i = 0; i < totalLeds; i++) {
