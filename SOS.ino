@@ -38,7 +38,7 @@ void loop() {
   delay(letterSpace*2); // espacio antes de repetir SOS
 }
 
-// --- Funciones para Morse ---
+// Funciones para Morse 
 void morseDot() {
   digitalWriteAll(HIGH);
   delay(dotTime);
