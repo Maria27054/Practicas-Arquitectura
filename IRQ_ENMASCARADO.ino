@@ -1,14 +1,14 @@
-// Pines LEDs
+// pines LEDs
 const int leds[] = {8,9,10,11,12};
 const int numLeds = 5;
 
-// Botón de pausa
+// botón de pausa
 const int btnPause = 2;
 
-// Variables generales
+// variables generales
 bool paused = false;
 
-// --- SOS ---
+// SOS
 const int sosPattern[9] = {1,1,1,3,3,3,1,1,1}; // 1=punto, 3=raya
 const unsigned long dotTime = 400;
 int sosStep = 0;
@@ -16,14 +16,14 @@ bool sosLEDOn = false;
 unsigned long sosTimer = 0;
 bool sosActive = true;
 
-// --- Blink ---
+// Blink 
 int blinkCount = 0;
 bool blinkState = false;
 unsigned long blinkTimer = 0;
 const unsigned long blinkInterval = 500;
 bool blinkActive = false;
 
-// --- Fade ---
+// Fade 
 int fadeValue = 0;
 bool fadeUp = true;
 unsigned long fadeTimer = 0;
@@ -47,14 +47,14 @@ void setup() {
 void loop() {
   unsigned long currentMillis = millis();
 
-  // --- Leer botón de pausa ---
+  // Leer botón de pausa
   if(digitalRead(btnPause)==LOW){
     paused = true;
   } else {
     paused = false;
   }
 
-  // --- Secuencia SOS ---
+  // Secuencia SOS 
   if(sosActive && !paused){
     unsigned long duration = (sosPattern[sosStep]==1?dotTime:dotTime*3);
     if(currentMillis - sosTimer >= duration){
@@ -77,7 +77,7 @@ void loop() {
     }
   }
 
-  // --- Secuencia Blink 7 veces ---
+  // Secuencia Blink 7 veces 
   if(blinkActive && !paused){
     if(currentMillis - blinkTimer >= blinkInterval){
       blinkTimer=currentMillis;
@@ -98,7 +98,7 @@ void loop() {
     }
   }
 
-  // --- Secuencia Fade ---
+  // Secuencia Fade 
   if(fadeActive && !paused){
     if(currentMillis - fadeTimer >= fadeStepTime){
       fadeTimer=currentMillis;
